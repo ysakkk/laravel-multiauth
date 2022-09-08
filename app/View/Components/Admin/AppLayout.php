@@ -26,3 +26,4 @@ class AppLayout extends Component
         return view('admin.layouts.app');
     }
 }
+

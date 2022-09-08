@@ -26,6 +26,9 @@
 
             <!-- Page Content -->
             <main>
+<button class="bg-indigo-700 font-semibold text-white py-2 px-4 rounded">ボタンあああ
+</button>
+
                 {{ $slot }}
             </main>
         </div>
