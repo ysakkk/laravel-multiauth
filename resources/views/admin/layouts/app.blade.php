@@ -18,16 +18,17 @@
             @include('admin.layouts.navigation')
 
             <!-- Page Heading -->
+            <!--
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
+-->
 
             <!-- Page Content -->
-            <main>
-<button class="bg-indigo-700 font-semibold text-white py-2 px-4 rounded">ボタンあああ
-</button>
+            <main class="flex">
+            @include('admin.layouts.sidebar')
 
                 {{ $slot }}
             </main>
