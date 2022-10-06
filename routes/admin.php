@@ -54,5 +54,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
+    Route::get('dashboard', function () { return view('admin.dashboard'); })
+       ->name('dashboard');
+
+    Route::get('shop', [App\Http\Controllers\Admin\Shop::class, 'edit'])
+       ->name('shop');
+
 
 });
