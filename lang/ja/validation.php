@@ -153,6 +153,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+       'shop_name' => '会社名(店名)',
+'zipcode' => '郵便番号',
+'pref_id' => '都道府県',
+'address1' => '市区町村',
+'address2' => '番地・ビル名',
+'phone_number' => '電話番号',
+    ],
 
 ];

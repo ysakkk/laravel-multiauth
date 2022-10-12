@@ -25,15 +25,20 @@ class CreateShopsTable extends Migration
             $table->string('phone_number', 14)->nullable();
             $table->string('email01')->nullable();
             $table->string('email02')->nullable();
+            $table->string('other_expense')->nullable();
+            $table->string('payment')->nullable();
+            $table->string('delivery_time')->nullable();
             $table->string('shop_name')->nullable();
             $table->string('shop_kana')->nullable();
             $table->string('shop_name_eng')->nullable();
-            $table->dateTime('update_date');
             $table->string('refund', 256)->nullable();
+            $table->unsignedSmallInteger('delivery_fee')->nullable()->default(0);
             $table->unsignedSmallInteger('delivery_free_amount')->nullable()->default(0);
             $table->string('defective', 256)->nullable();
             $table->string('zeus_ipcode', 16)->nullable();
             $table->string('zeus_key', 64)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

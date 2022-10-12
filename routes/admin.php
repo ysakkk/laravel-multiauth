@@ -57,8 +57,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('dashboard', function () { return view('admin.dashboard'); })
        ->name('dashboard');
 
-    Route::get('shop', [App\Http\Controllers\Admin\Shop::class, 'edit'])
-       ->name('shop');
+    Route::get('shop', [App\Http\Controllers\Admin\ShopController::class, 'edit']) ->name('shop');
+    //Route::post('shop', [App\Http\Controllers\Admin\ShopController::class, 'update']) ->name('shop.update');
+    Route::post('shop', [App\Http\Controllers\Admin\ShopController::class, 'store']) ->name('shop.store');
 
 
 });
