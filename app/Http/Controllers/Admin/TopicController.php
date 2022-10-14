@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use Validator;
+use Image;
 
 class TopicController extends Controller
 {
@@ -38,16 +39,34 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
+        $images = Topic::all()->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['file_name']];
+        });
+
         $validated = $request->validate([
             'ids.*'  => 'required',
             'comment.*' => 'max:255',
             'url.*' => 'max:255'
         ]);
 
-        foreach ($validated['ids'] as $id)  {
-            $path = null;
-            if ($request->file('file')[$id]->isValid()) {
-               $path = $request->file('file')[$id]->store('images','public');
+        foreach ($validated['ids'] as $id) {
+
+            // アップロードされない画像はそのまま
+            $path = $images[$id];
+
+            // 画像更新
+            if (isset($request->file('file')[$id])) {
+                $file = $request->file('file')[$id];
+                if ($file->isValid()) {
+                    $resize = Image::make($file)->resize(640, 260)->encode('jpg');
+                    $hash =  md5($resize->__toString());
+                    $path = "images/{$hash}.jpg";
+
+                    // public/images/{$hash}.jpg
+                    $resize->save(public_path($path));
+
+                    //$path = $request->file('file')[$id]->store('images','public');
+                }
             }
             $data[] = [
                 'id' => $id,
@@ -60,7 +79,7 @@ class TopicController extends Controller
         Topic::upsert(
             $data,
             ['id'],
-            ['comment','url','file_name']
+            ['comment', 'url', 'file_name']
         );
 
         session()->flash('settings', '更新しました');

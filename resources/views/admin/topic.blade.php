@@ -20,7 +20,7 @@
             <x-form-input name="url[{{ $f->id }}]" value="{{ $f['url'] }}" label="リンク先" />
 
               <div>
-                <img src="{{ asset('storage/'.$f->file_name) }}" />
+                <img src="{{ asset($f->file_name) }}" />
                 <input name="file[{{ $f->id }}]" class="form-control
                 block
                 px-3
