@@ -160,6 +160,8 @@ return [
 'address1' => '市区町村',
 'address2' => '番地・ビル名',
 'phone_number' => '電話番号',
+'comment.*' => '説明',
+'url.*' => 'リンク先',
     ],
 
 ];

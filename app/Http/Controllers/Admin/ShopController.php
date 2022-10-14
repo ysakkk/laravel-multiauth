@@ -84,15 +84,6 @@ class ShopController extends Controller
             return [$item['id'] => $item['name']];
         });
         return view('admin.shop', compact('form', 'prefs'));
-
-        /*
-        $model = Shop::find(1);
-       $form = $formBuilder->create('App\Forms\Admin\Shop', [
-          'method' => 'POST',
-          'url' => route('admin.shop.store'),
-          'model' => $model,
-       ]);
-*/
     }
 
     /**
